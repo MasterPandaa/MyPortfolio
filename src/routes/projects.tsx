@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useLanguage, t as tr } from "@/contexts/language-context";
-import { type Project, type ProjectType } from "@/data/projects";
-import { getProjectsFn } from "@/lib/admin-server";
+import { type Project, type ProjectType, projects } from "@/data/projects";
 import { ProjectStats } from "@/components/project-stats";
 import { CategoryFilter, type FilterValue } from "@/components/category-filter";
 import { ProjectCard } from "@/components/project-card";
@@ -32,7 +31,7 @@ export const Route = createFileRoute("/projects")({
       },
     ],
   }),
-  loader: () => getProjectsFn(),
+  loader: () => projects,
   component: ProjectsPage,
 });
 

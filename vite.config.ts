@@ -34,13 +34,8 @@ export default defineConfig({
     tsconfigPaths({ projects: ["./tsconfig.json"] }),
     tanstackStart({
       importProtection: {
-        behavior: "error",
-        client: {
-          files: ["**/server/**"],
-          specifiers: ["server-only"],
-        },
+        behavior: "mock",
       },
-      server: { preset: "node-server" },
     }),
     react(),
   ],

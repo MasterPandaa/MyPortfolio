@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useLanguage, t as tr, type Language } from "@/contexts/language-context";
 import { Briefcase, MapPin, Calendar, Building2, Sparkle, GraduationCap, Target } from "lucide-react";
-import { getExperiencesFn } from "@/lib/admin-server";
-import { type Experience, type Bilingual } from "@/data/experiences";
+import { type Experience, type Bilingual, experiences } from "@/data/experiences";
 
 export const Route = createFileRoute("/career")({
   head: () => ({
@@ -21,7 +20,7 @@ export const Route = createFileRoute("/career")({
       },
     ],
   }),
-  loader: () => getExperiencesFn(),
+  loader: () => experiences,
   component: CareerPage,
 });
 

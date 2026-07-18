@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useLanguage, t as tr } from "@/contexts/language-context";
-import { type ActivityItem } from "@/data/activities";
-import { getActivitiesFn } from "@/lib/admin-server";
+import { type ActivityItem, activityItems } from "@/data/activities";
 import { ActivityCard } from "@/components/activity-card";
 import { ActivityLightbox } from "@/components/activity-lightbox";
 import { SearchBar } from "@/components/search-bar";
@@ -30,7 +29,7 @@ export const Route = createFileRoute("/activities")({
       },
     ],
   }),
-  loader: () => getActivitiesFn(),
+  loader: () => activityItems,
   component: ActivitiesPage,
 });
 

@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useLanguage, t as tr } from "@/contexts/language-context";
-import { type AiItem, type AiCategory, type AiStatus, statusMeta } from "@/data/ai-data";
-import { getAiItemsFn } from "@/lib/admin-server";
+import { type AiItem, type AiCategory, type AiStatus, statusMeta, aiItems } from "@/data/ai-data";
 import { AiStats } from "@/components/ai-stats";
 import { AiListItem } from "@/components/ai-list-item";
 import { AiDetailDialog } from "@/components/ai-detail-dialog";
@@ -32,7 +31,7 @@ export const Route = createFileRoute("/ai-data")({
       },
     ],
   }),
-  loader: () => getAiItemsFn(),
+  loader: () => aiItems,
   component: AiDataPage,
 });
 

@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as ActivitiesRouteImport } from './routes/activities'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AiDataRouteImport } from './routes/ai-data'
 import { Route as CareerRouteImport } from './routes/career'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -31,11 +30,6 @@ const AchievementsRoute = AchievementsRouteImport.update({
 const ActivitiesRoute = ActivitiesRouteImport.update({
   id: '/activities',
   path: '/activities',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AiDataRoute = AiDataRouteImport.update({
@@ -63,7 +57,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
   '/activities': typeof ActivitiesRoute
-  '/admin': typeof AdminRoute
   '/ai-data': typeof AiDataRoute
   '/career': typeof CareerRoute
   '/contact': typeof ContactRoute
@@ -73,7 +66,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
   '/activities': typeof ActivitiesRoute
-  '/admin': typeof AdminRoute
   '/ai-data': typeof AiDataRoute
   '/career': typeof CareerRoute
   '/contact': typeof ContactRoute
@@ -84,7 +76,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/achievements': typeof AchievementsRoute
   '/activities': typeof ActivitiesRoute
-  '/admin': typeof AdminRoute
   '/ai-data': typeof AiDataRoute
   '/career': typeof CareerRoute
   '/contact': typeof ContactRoute
@@ -96,7 +87,6 @@ export interface FileRouteTypes {
     | '/'
     | '/achievements'
     | '/activities'
-    | '/admin'
     | '/ai-data'
     | '/career'
     | '/contact'
@@ -106,7 +96,6 @@ export interface FileRouteTypes {
     | '/'
     | '/achievements'
     | '/activities'
-    | '/admin'
     | '/ai-data'
     | '/career'
     | '/contact'
@@ -116,7 +105,6 @@ export interface FileRouteTypes {
     | '/'
     | '/achievements'
     | '/activities'
-    | '/admin'
     | '/ai-data'
     | '/career'
     | '/contact'
@@ -127,7 +115,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AchievementsRoute: typeof AchievementsRoute
   ActivitiesRoute: typeof ActivitiesRoute
-  AdminRoute: typeof AdminRoute
   AiDataRoute: typeof AiDataRoute
   CareerRoute: typeof CareerRoute
   ContactRoute: typeof ContactRoute
@@ -155,13 +142,6 @@ declare module '@tanstack/react-router' {
       path: '/activities'
       fullPath: '/activities'
       preLoaderRoute: typeof ActivitiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ai-data': {
@@ -199,7 +179,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AchievementsRoute: AchievementsRoute,
   ActivitiesRoute: ActivitiesRoute,
-  AdminRoute: AdminRoute,
   AiDataRoute: AiDataRoute,
   CareerRoute: CareerRoute,
   ContactRoute: ContactRoute,

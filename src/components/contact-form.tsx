@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useLanguage, t as tr } from "@/contexts/language-context";
 import { cn } from "@/lib/utils";
-import { sendContactMessageFn } from "@/lib/admin-server";
 
 const RECIPIENT = "luthfiabd.14@gmail.com";
 
@@ -54,20 +53,18 @@ export function ContactForm() {
     setSending(true);
 
     try {
-      await sendContactMessageFn({
-        data: {
-          name: parsed.data.name,
-          subject: parsed.data.subject,
-          message: parsed.data.message,
-        },
-      });
+      const mailtoSubject = encodeURIComponent(parsed.data.subject);
+      const mailtoBody = encodeURIComponent(
+        `Nama: ${parsed.data.name}\n\n${parsed.data.message}`
+      );
+      window.open(`mailto:${RECIPIENT}?subject=${mailtoSubject}&body=${mailtoBody}`, "_blank");
 
       toast.success(
-        L("Pesan Anda berhasil dikirim!", "Your message was successfully sent!"),
+        L("Pesan siap dikirim!", "Message ready to send!"),
         {
           description: L(
-            "Terima kasih telah menghubungi saya. Pesan telah disimpan di sistem.",
-            "Thank you for contacting me. The message has been stored in the system.",
+            "Aplikasi email Anda akan terbuka. Klik kirim untuk menyelesaikannya.",
+            "Your email app will open. Click send to complete it.",
           ),
         },
       );
@@ -75,7 +72,7 @@ export function ContactForm() {
       setSubject("");
       setMessage("");
     } catch (err: any) {
-      toast.error(err.message || "Gagal mengirim pesan");
+      toast.error(err.message || L("Gagal membuka aplikasi email", "Failed to open email app"));
     } finally {
       setSending(false);
     }

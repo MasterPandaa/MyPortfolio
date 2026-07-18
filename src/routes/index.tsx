@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useLanguage, t as tr } from "@/contexts/language-context";
 import * as Icons from "lucide-react";
-import { getHomepageFn } from "@/lib/admin-server";
+import { homepageData } from "@/data/homepage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
-  loader: () => getHomepageFn(),
+  loader: () => homepageData,
   component: Index,
 });
 

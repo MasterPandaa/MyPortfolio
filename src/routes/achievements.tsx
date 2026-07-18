@@ -4,8 +4,8 @@ import { useLanguage, t as tr } from "@/contexts/language-context";
 import {
   type AchievementItem,
   type AchievementCategory,
+  achievementItems,
 } from "@/data/achievements";
-import { getAchievementsFn } from "@/lib/admin-server";
 import { AchievementStats } from "@/components/achievement-stats";
 import { AchievementListItem } from "@/components/achievement-list-item";
 import { AchievementDetailDialog } from "@/components/achievement-detail-dialog";
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/achievements")({
       },
     ],
   }),
-  loader: () => getAchievementsFn(),
+  loader: () => achievementItems,
   component: AchievementsPage,
 });
 
