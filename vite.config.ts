@@ -40,7 +40,7 @@ export default defineConfig({
           specifiers: ["server-only"],
         },
       },
-      server: { entry: "server" },
+      server: { preset: "node-server" },
     }),
     react(),
   ],
