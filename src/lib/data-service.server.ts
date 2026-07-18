@@ -38,13 +38,30 @@ async function writeJsonFile<T>(filename: string, data: T[]): Promise<void> {
   await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
 }
 
-const dbConfig = {
-  host: "127.0.0.1",
-  user: "root",
-  password: "",
-  database: "portfolio2026",
-  port: 3306,
+const databaseUrl = process.env.DATABASE_URL || process.env.MYSQL_URL || process.env.MYSQL_PRIVATE_URL;
+
+let dbConfig = {
+  host: process.env.MYSQLHOST || process.env.DB_HOST || "127.0.0.1",
+  user: process.env.MYSQLUSER || process.env.DB_USER || "root",
+  password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || "",
+  database: process.env.MYSQLDATABASE || process.env.DB_DATABASE || "portfolio2026",
+  port: parseInt(process.env.MYSQLPORT || process.env.DB_PORT || "3306", 10),
 };
+
+if (databaseUrl) {
+  try {
+    const url = new URL(databaseUrl);
+    dbConfig = {
+      host: url.hostname,
+      user: url.username,
+      password: decodeURIComponent(url.password),
+      database: url.pathname.replace(/^\//, ""),
+      port: parseInt(url.port || "3306", 10),
+    };
+  } catch (e) {
+    console.error("Failed to parse database connection URL:", e);
+  }
+}
 
 let poolPromise: Promise<mysql.Pool> | null = null;
 
