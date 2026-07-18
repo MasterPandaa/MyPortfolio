@@ -16,6 +16,74 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    id: 4,
+    role: { id: "Freelance Full-Stack Developer", en: "Freelance Full-Stack Developer" },
+    company: "SDIT Luqman Al Hakim",
+    period: { id: "Juli 2025 – Agustus 2025", en: "July 2025 – August 2025" },
+    duration: { id: "2 bulan", en: "2 months" },
+    status: { id: "Freelance", en: "Freelance" },
+    location: "Yogyakarta, Indonesia",
+    workType: { id: "Remote", en: "Remote" },
+    tasks: [
+      {
+        id: "Membangun website profil sekolah berbasis Laravel dengan CMS mandiri.",
+        en: "Built a Laravel-based school profile website with a self-managed CMS.",
+      },
+    ],
+    learnings: [
+      {
+        id: "Merancang CMS yang ramah bagi pengguna nonteknis (user-friendly admin panel).",
+        en: "Designing a CMS friendly for non-technical users (user-friendly admin panel).",
+      },
+    ],
+    impact: [
+      {
+        id: "Staf nonteknis dapat mengelola konten dan publikasi informasi tanpa keahlian coding.",
+        en: "Non-technical staff can manage content and publish information without coding skills.",
+      },
+    ],
+  },
+  {
+    id: 3,
+    role: { id: "Freelance Full-Stack Developer", en: "Freelance Full-Stack Developer" },
+    company: "PT Sarana Insan Muda Selaras",
+    period: { id: "Mei 2025 – Juni 2025", en: "May 2025 – June 2025" },
+    duration: { id: "2 bulan", en: "2 months" },
+    status: { id: "Freelance", en: "Freelance" },
+    location: "Yogyakarta, Indonesia",
+    workType: { id: "Remote", en: "Remote" },
+    tasks: [
+      {
+        id: "Mengembangkan portal Penerimaan Murid Baru (SPMB) berbasis Laravel sebagai solusi SaaS.",
+        en: "Developed a Laravel-based New Student Admissions (SPMB) portal as a SaaS solution.",
+      },
+      {
+        id: "Membangun fitur pendaftaran online, CMS terpusat, dan pelaporan otomatis.",
+        en: "Built online registration features, a centralized CMS, and automated reporting.",
+      },
+    ],
+    learnings: [
+      {
+        id: "Merancang produk berbasis model SaaS yang dapat digunakan ulang oleh berbagai institusi (multi-tenant/reusable system).",
+        en: "Designing SaaS-based products reusable across institutions (multi-tenant / reusable systems).",
+      },
+      {
+        id: "Membangun sistem pelaporan otomatis untuk kebutuhan administrasi pendidikan.",
+        en: "Building automated reporting systems for education administration needs.",
+      },
+    ],
+    impact: [
+      {
+        id: "Menghasilkan solusi siap pakai (ready-to-use) bagi berbagai institusi pendidikan.",
+        en: "Delivered a ready-to-use solution for various educational institutions.",
+      },
+      {
+        id: "Menyederhanakan proses pendaftaran murid baru secara digital.",
+        en: "Simplified the new student admission process digitally.",
+      },
+    ],
+  },
+  {
     id: 1,
     role: {
       id: "Full-Stack Developer Intern (Capstone Project)",
@@ -99,74 +167,6 @@ export const experiences: Experience[] = [
       {
         id: "Mempercepat & mendigitalisasi proses administrasi rumah sakit yang sebelumnya manual.",
         en: "Accelerated and digitized previously manual hospital administration processes.",
-      },
-    ],
-  },
-  {
-    id: 3,
-    role: { id: "Freelance Full-Stack Developer", en: "Freelance Full-Stack Developer" },
-    company: "PT Sarana Insan Muda Selaras",
-    period: { id: "Mei 2025 – Juni 2025", en: "May 2025 – June 2025" },
-    duration: { id: "2 bulan", en: "2 months" },
-    status: { id: "Freelance", en: "Freelance" },
-    location: "Yogyakarta, Indonesia",
-    workType: { id: "Remote", en: "Remote" },
-    tasks: [
-      {
-        id: "Mengembangkan portal Penerimaan Murid Baru (SPMB) berbasis Laravel sebagai solusi SaaS.",
-        en: "Developed a Laravel-based New Student Admissions (SPMB) portal as a SaaS solution.",
-      },
-      {
-        id: "Membangun fitur pendaftaran online, CMS terpusat, dan pelaporan otomatis.",
-        en: "Built online registration features, a centralized CMS, and automated reporting.",
-      },
-    ],
-    learnings: [
-      {
-        id: "Merancang produk berbasis model SaaS yang dapat digunakan ulang oleh berbagai institusi (multi-tenant/reusable system).",
-        en: "Designing SaaS-based products reusable across institutions (multi-tenant / reusable systems).",
-      },
-      {
-        id: "Membangun sistem pelaporan otomatis untuk kebutuhan administrasi pendidikan.",
-        en: "Building automated reporting systems for education administration needs.",
-      },
-    ],
-    impact: [
-      {
-        id: "Menghasilkan solusi siap pakai (ready-to-use) bagi berbagai institusi pendidikan.",
-        en: "Delivered a ready-to-use solution for various educational institutions.",
-      },
-      {
-        id: "Menyederhanakan proses pendaftaran murid baru secara digital.",
-        en: "Simplified the new student admission process digitally.",
-      },
-    ],
-  },
-  {
-    id: 4,
-    role: { id: "Freelance Full-Stack Developer", en: "Freelance Full-Stack Developer" },
-    company: "SDIT Luqman Al Hakim",
-    period: { id: "Juli 2025 – Agustus 2025", en: "July 2025 – August 2025" },
-    duration: { id: "2 bulan", en: "2 months" },
-    status: { id: "Freelance", en: "Freelance" },
-    location: "Yogyakarta, Indonesia",
-    workType: { id: "Remote", en: "Remote" },
-    tasks: [
-      {
-        id: "Membangun website profil sekolah berbasis Laravel dengan CMS mandiri.",
-        en: "Built a Laravel-based school profile website with a self-managed CMS.",
-      },
-    ],
-    learnings: [
-      {
-        id: "Merancang CMS yang ramah bagi pengguna nonteknis (user-friendly admin panel).",
-        en: "Designing a CMS friendly for non-technical users (user-friendly admin panel).",
-      },
-    ],
-    impact: [
-      {
-        id: "Staf nonteknis dapat mengelola konten dan publikasi informasi tanpa keahlian coding.",
-        en: "Non-technical staff can manage content and publish information without coding skills.",
       },
     ],
   },
