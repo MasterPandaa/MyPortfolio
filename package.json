@@ -7,8 +7,10 @@
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "build:spa": "vite build --config vite.config.spa.ts",
     "start": "node server.mjs",
     "preview": "vite preview",
+    "preview:spa": "vite preview --config vite.config.spa.ts",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
