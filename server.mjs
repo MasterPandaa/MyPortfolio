@@ -21,41 +21,55 @@ const MIME = {
   ".woff2": "font/woff2",
   ".ttf": "font/ttf",
   ".webp": "image/webp",
+  ".webmanifest": "application/manifest+json",
 };
 
-const STATIC_DIR = "./dist/client";
+// Order of directories to search for static files
+const STATIC_DIRS = ["./dist/client", "./public"];
+
+async function tryServeStatic(pathname, res) {
+  for (const dir of STATIC_DIRS) {
+    const filePath = join(dir, pathname);
+    try {
+      const s = await stat(filePath);
+      if (s.isFile()) {
+        const ext = extname(filePath).toLowerCase();
+        const mime = MIME[ext] || "application/octet-stream";
+        const content = await readFile(filePath);
+        res.writeHead(200, { "Content-Type": mime });
+        res.end(content);
+        return true;
+      }
+    } catch (_) {
+      // Not found in this dir, try next
+    }
+  }
+  return false;
+}
 
 const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://localhost`);
   const pathname = url.pathname;
 
-  // Try to serve static files first
-  const filePath = join(STATIC_DIR, pathname);
-  try {
-    const s = await stat(filePath);
-    if (s.isFile()) {
-      const ext = extname(filePath).toLowerCase();
-      const mime = MIME[ext] || "application/octet-stream";
-      const content = await readFile(filePath);
-      res.writeHead(200, { "Content-Type": mime });
-      res.end(content);
-      return;
-    }
-  } catch (_) {
-    // Not a static file, fall through to SSR handler
-  }
+  // Try to serve static files first (from dist/client and public/)
+  const served = await tryServeStatic(pathname, res);
+  if (served) return;
 
   // Forward to TanStack Start SSR handler
   const request = new Request(`http://localhost${req.url}`, {
     method: req.method,
     headers: Object.fromEntries(
-      Object.entries(req.headers).filter(([, v]) => v !== undefined).map(([k, v]) => [k, Array.isArray(v) ? v.join(", ") : v])
+      Object.entries(req.headers)
+        .filter(([, v]) => v !== undefined)
+        .map(([k, v]) => [k, Array.isArray(v) ? v.join(", ") : v])
     ),
-    body: ["GET", "HEAD"].includes(req.method) ? undefined : await new Promise((resolve) => {
-      const chunks = [];
-      req.on("data", (chunk) => chunks.push(chunk));
-      req.on("end", () => resolve(Buffer.concat(chunks)));
-    }),
+    body: ["GET", "HEAD"].includes(req.method)
+      ? undefined
+      : await new Promise((resolve) => {
+          const chunks = [];
+          req.on("data", (chunk) => chunks.push(chunk));
+          req.on("end", () => resolve(Buffer.concat(chunks)));
+        }),
   });
 
   const response = await handler.fetch(request);
