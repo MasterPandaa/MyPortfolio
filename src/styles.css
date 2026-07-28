@@ -153,40 +153,7 @@
 
 /* ─── Mobile content scaling ─────────────────────────────────────────── */
 @media (max-width: 767px) {
-  /* Slightly tighter base font */
   html {
     font-size: 15px;
   }
-
-  /* Reduce section top margins */
-  section {
-    margin-top: 1.5rem !important;
-  }
-
-  /* Cards: tighter padding */
-  .rounded-3xl,
-  .rounded-2xl {
-    border-radius: 1rem;
-  }
-
-  /* Hero section compact on mobile */
-  section.relative.overflow-hidden {
-    padding: 1rem !important;
-  }
-
-  /* Section heading scale-down */
-  h1 {
-    font-size: 1.85rem !important;
-    line-height: 1.2 !important;
-  }
-
-  h2 {
-    font-size: 1.4rem !important;
-  }
-
-  /* Max width for page wrappers */
-  .mx-auto.max-w-6xl {
-    padding-top: 0.5rem;
-  }
 }
-

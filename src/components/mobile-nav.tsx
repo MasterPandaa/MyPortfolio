@@ -1,4 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Home,
   Briefcase,
@@ -10,6 +11,7 @@ import {
   Sun,
   Moon,
   Languages,
+  MoreHorizontal,
 } from "lucide-react";
 import { useLanguage, t as tr } from "@/contexts/language-context";
 import { useTheme } from "@/contexts/theme-context";
@@ -22,89 +24,151 @@ type MenuItem = {
   en: string;
 };
 
-const navItems: MenuItem[] = [
-  { to: "/", icon: Home, id: "Home", en: "Home" },
+// Primary tabs shown always in dock
+const primaryItems: MenuItem[] = [
+  { to: "/", icon: Home, id: "Beranda", en: "Home" },
   { to: "/career", icon: Briefcase, id: "Karir", en: "Career" },
   { to: "/projects", icon: Code2, id: "Proyek", en: "Projects" },
-  { to: "/ai-data", icon: BrainCircuit, id: "AI", en: "AI" },
-  { to: "/achievements", icon: Trophy, id: "Award", en: "Award" },
-  { to: "/activities", icon: Camera, id: "Galeri", en: "Gallery" },
+  { to: "/ai-data", icon: BrainCircuit, id: "AI & Data", en: "AI & Data" },
+];
+
+// Secondary items shown in the "More" popup
+const moreItems: MenuItem[] = [
+  { to: "/achievements", icon: Trophy, id: "Pencapaian", en: "Achievements" },
+  { to: "/activities", icon: Camera, id: "Aktivitas", en: "Activities" },
   { to: "/contact", icon: Mail, id: "Kontak", en: "Contact" },
 ];
 
 export function MobileNav() {
+  const [moreOpen, setMoreOpen] = useState(false);
   const { language, toggle: toggleLang } = useLanguage();
   const { theme, toggle: toggleTheme } = useTheme();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  const langLabel = tr("Bahasa: ID · klik untuk EN", "Language: EN · click for ID", language);
-  const themeLabel = tr(
-    theme === "light" ? "Tema terang · klik untuk gelap" : "Tema gelap · klik untuk terang",
-    theme === "light" ? "Light theme · click for dark" : "Dark theme · click for light",
-    language,
+  // Check if current path is in secondary items
+  const secondaryActive = moreItems.some((item) =>
+    item.to === "/" ? pathname === "/" : pathname.startsWith(item.to),
   );
 
   return (
-    <nav
-      aria-label={tr("Navigasi utama", "Main navigation", language)}
-      className="fixed bottom-2 left-2 right-2 z-40 flex items-center justify-around rounded-2xl border border-border/60 bg-card/90 py-1.5 px-1 backdrop-blur-xl shadow-xl md:hidden"
-    >
-      {/* Nav Links */}
-      {navItems.map((item) => {
-        const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
-        const Icon = item.icon;
-        return (
-          <Link
-            key={item.to}
-            to={item.to}
-            aria-label={tr(item.id, item.en, language)}
-            className={cn(
-              "flex flex-col items-center justify-center rounded-xl py-1.5 px-2 transition-all duration-200",
-              active
-                ? "bg-accent text-accent-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground",
-            )}
-          >
-            <Icon className={cn("h-[18px] w-[18px]", active && "drop-shadow-sm")} />
-            <span className="mt-0.5 text-[9px] font-medium leading-none">
-              {tr(item.id, item.en, language)}
-            </span>
-          </Link>
-        );
-      })}
+    <>
+      {/* More Popup — floats above dock */}
+      {moreOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-40 md:hidden"
+            onClick={() => setMoreOpen(false)}
+            aria-hidden="true"
+          />
 
-      {/* Divider */}
-      <div className="h-7 w-px bg-border/60 mx-0.5" />
+          {/* Popup card */}
+          <div className="fixed bottom-20 left-3 right-3 z-50 md:hidden animate-in fade-in slide-in-from-bottom-2 duration-200">
+            <div className="rounded-2xl border border-border/70 bg-card/95 p-4 shadow-2xl backdrop-blur-xl">
+              {/* Nav links */}
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {moreItems.map((item) => {
+                  const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setMoreOpen(false)}
+                      className={cn(
+                        "flex flex-col items-center justify-center gap-2 rounded-xl py-4 px-2 transition-all duration-200",
+                        active
+                          ? "bg-accent text-accent-foreground shadow-sm"
+                          : "bg-secondary/40 text-foreground/80 hover:bg-secondary hover:text-foreground",
+                      )}
+                    >
+                      <Icon className="h-5 w-5" />
+                      <span className="text-[11px] font-medium leading-none text-center">
+                        {tr(item.id, item.en, language)}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
 
-      {/* Language Toggle */}
-      <button
-        type="button"
-        onClick={toggleLang}
-        aria-label={langLabel}
-        className="flex flex-col items-center justify-center rounded-xl py-1.5 px-2 text-muted-foreground transition-all duration-200 hover:text-foreground hover:bg-secondary/60"
+              {/* Divider */}
+              <div className="h-px w-full bg-border/50 mb-4" />
+
+              {/* Language & Theme toggles */}
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={toggleLang}
+                  aria-label={tr("Ganti bahasa", "Toggle language", language)}
+                  className="flex items-center justify-center gap-2 rounded-xl border border-border bg-background/60 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:border-accent"
+                >
+                  <Languages className="h-4 w-4" />
+                  <span>{language === "id" ? "Bahasa ID" : "English"}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={toggleTheme}
+                  aria-label={tr("Ganti tema", "Toggle theme", language)}
+                  className="flex items-center justify-center gap-2 rounded-xl border border-border bg-background/60 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground hover:border-accent"
+                >
+                  {theme === "light" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  <span>{theme === "light" ? tr("Terang", "Light", language) : tr("Gelap", "Dark", language)}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Bottom Dock */}
+      <nav
+        aria-label={tr("Navigasi utama", "Main navigation", language)}
+        className="fixed bottom-3 left-3 right-3 z-40 flex items-center justify-around rounded-2xl border border-border/60 bg-card/95 py-2 px-1 backdrop-blur-xl shadow-xl md:hidden"
       >
-        <Languages className="h-[18px] w-[18px]" />
-        <span className="mt-0.5 text-[9px] font-medium leading-none">
-          {language.toUpperCase()}
-        </span>
-      </button>
+        {/* Primary nav items */}
+        {primaryItems.map((item) => {
+          const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.to}
+              to={item.to}
+              onClick={() => setMoreOpen(false)}
+              aria-label={tr(item.id, item.en, language)}
+              className={cn(
+                "flex flex-col items-center justify-center rounded-xl py-2 px-4 transition-all duration-200 min-w-[56px]",
+                active
+                  ? "bg-accent text-accent-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              <Icon className="h-5 w-5" />
+              <span className="mt-1 text-[10px] font-medium leading-none">
+                {tr(item.id, item.en, language)}
+              </span>
+            </Link>
+          );
+        })}
 
-      {/* Theme Toggle */}
-      <button
-        type="button"
-        onClick={toggleTheme}
-        aria-label={themeLabel}
-        className="flex flex-col items-center justify-center rounded-xl py-1.5 px-2 text-muted-foreground transition-all duration-200 hover:text-foreground hover:bg-secondary/60"
-      >
-        {theme === "light" ? (
-          <Sun className="h-[18px] w-[18px]" />
-        ) : (
-          <Moon className="h-[18px] w-[18px]" />
-        )}
-        <span className="mt-0.5 text-[9px] font-medium leading-none">
-          {theme === "light" ? tr("Terang", "Light", language) : tr("Gelap", "Dark", language)}
-        </span>
-      </button>
-    </nav>
+        {/* More button */}
+        <button
+          type="button"
+          onClick={() => setMoreOpen(!moreOpen)}
+          aria-label={tr("Lebih banyak menu", "More menu", language)}
+          aria-expanded={moreOpen}
+          className={cn(
+            "flex flex-col items-center justify-center rounded-xl py-2 px-4 transition-all duration-200 min-w-[56px]",
+            (moreOpen || secondaryActive)
+              ? "bg-accent text-accent-foreground shadow-sm"
+              : "text-muted-foreground hover:text-foreground",
+          )}
+        >
+          <MoreHorizontal className="h-5 w-5" />
+          <span className="mt-1 text-[10px] font-medium leading-none">
+            {tr("Lainnya", "More", language)}
+          </span>
+        </button>
+      </nav>
+    </>
   );
 }
