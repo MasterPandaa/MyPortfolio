@@ -137,7 +137,7 @@ function RootComponent() {
             <GridBackground />
             <BubbleSidebar />
             <MobileNav />
-            <main className="px-4 pt-16 pb-24 md:pl-28 md:pr-8 md:py-6">
+            <main className="px-3 pt-4 pb-20 md:pl-28 md:pr-8 md:py-6">
               <Outlet />
             </main>
           </div>
