@@ -160,12 +160,12 @@ export function BubbleSidebar() {
 
   return (
     <aside
-        className={cn(
-          "fixed left-3 top-3 bottom-3 z-40 flex flex-col items-center gap-3",
-          "rounded-full border border-border/60 bg-background/80 backdrop-blur-md",
-          "px-2 py-4 shadow-lg",
-        )}
-      >
+      className={cn(
+        "fixed left-3 top-3 bottom-3 z-40 hidden md:flex flex-col items-center gap-3",
+        "rounded-full border border-border/60 bg-background/80 backdrop-blur-md",
+        "px-2 py-4 shadow-lg",
+      )}
+    >
       {/* Profile */}
       <Link
         to="/"

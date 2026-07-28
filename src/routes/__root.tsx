@@ -14,6 +14,7 @@ import { reportError } from "../lib/error-reporting";
 import { LanguageProvider } from "../contexts/language-context";
 import { ThemeProvider } from "../contexts/theme-context";
 import { BubbleSidebar } from "../components/bubble-sidebar";
+import { MobileNav } from "../components/mobile-nav";
 import { GridBackground } from "../components/grid-background";
 
 function NotFoundComponent() {
@@ -135,7 +136,8 @@ function RootComponent() {
           <div className="min-h-screen bg-transparent text-foreground relative z-0">
             <GridBackground />
             <BubbleSidebar />
-            <main className="pl-24 pr-4 py-6 md:pl-28 md:pr-8">
+            <MobileNav />
+            <main className="px-4 pt-16 pb-24 md:pl-28 md:pr-8 md:py-6">
               <Outlet />
             </main>
           </div>

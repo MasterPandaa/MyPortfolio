@@ -18,43 +18,37 @@ export interface HomepageData {
 export const homepageData: HomepageData = {
   name: "Muhammad Luthfi Abdillah",
   subtitle: {
-    id: "Lulusan S1 Teknologi Informasi — Data Engineer & Full-Stack Developer",
-    en: "Information Technology Graduate — Data Engineer & Full-Stack Developer",
+    id: "AI Agent Engineer · QA Enthusiast · Full-Stack Developer",
+    en: "AI Agent Engineer · QA Enthusiast · Full-Stack Developer",
   },
   description: {
-    id: "Lulusan S1 Teknologi Informasi (IPK 3.83/4.00) dengan pengalaman lintas bidang Data Engineering, Data Science/AI, dan Full-Stack Web Development. Terbiasa merancang pipeline data end-to-end (ETL), membangun model machine learning, serta mengembangkan aplikasi web dan mobile skala produksi yang telah diimplementasikan di berbagai institusi kesehatan dan pendidikan.",
-    en: "Information Technology graduate (GPA 3.83/4.00) with cross-disciplinary experience in Data Engineering, Data Science/AI, and Full-Stack Web Development. Experienced in designing end-to-end data pipelines (ETL), building machine learning models, and developing production-scale web and mobile applications implemented across various healthcare and education institutions.",
+    id: "Lulusan S1 Teknologi Informasi (IPK 3,83/4,00) dengan pengalaman mengembangkan solusi AI Agent serta aplikasi web maupun mobile yang telah diimplementasikan dan diuji di sektor kesehatan dan pendidikan. Terbiasa mengintegrasikan teknologi AI ke dalam alur kerja pengembangan untuk mempercepat analisis, pemrograman, dokumentasi, pembuatan aset visual, serta eksplorasi berbagai pendekatan solusi.",
+    en: "Information Technology graduate (GPA 3.83/4.00) with experience developing AI Agent solutions as well as web and mobile applications implemented and tested across healthcare and education sectors. Accustomed to integrating AI technology into the development workflow to accelerate analysis, programming, documentation, visual asset creation, and solution exploration.",
   },
   gpa: "3.83 / 4.00",
-  focus: "Data · AI · Web",
+  focus: "AI Agent · QA · Web",
   available: {
     id: "Tersedia untuk kolaborasi",
     en: "Available for collaboration",
   },
   skillGroups: [
     {
-      iconName: "Code2",
-      id: "Bahasa Pemrograman",
-      en: "Programming Languages",
-      items: ["Python", "PHP", "JavaScript", "SQL", "Dart", "Java", "C", "C++", "C#"],
+      iconName: "Bot",
+      id: "AI Agent & LLM",
+      en: "AI Agent & LLM",
+      items: ["n8n", "LLM Integration", "Prompt Engineering", "AI Agent Development"],
     },
     {
-      iconName: "Database",
-      id: "Data Engineering & Big Data",
-      en: "Data Engineering & Big Data",
-      items: ["Apache Spark", "Hadoop", "Apache Kafka", "Prefect", "Playwright", "Octoparse", "ETL Pipeline"],
-    },
-    {
-      iconName: "Brain",
-      id: "Data Science & AI/ML",
-      en: "Data Science & AI/ML",
-      items: ["Machine Learning", "Deep Learning", "NLP", "Hugging Face", "Orange Data Mining"],
+      iconName: "ShieldCheck",
+      id: "Quality Assurance & Testing",
+      en: "Quality Assurance & Testing",
+      items: ["Black-box Testing", "Regression Testing", "SAST/White-box Testing"],
     },
     {
       iconName: "Layout",
       id: "Web & Mobile Development",
       en: "Web & Mobile Development",
-      items: ["Laravel", "CodeIgniter", "Django", "Flask", "React.js", "Streamlit", "Flutter"],
+      items: ["Laravel", "CodeIgniter", "Django", "Flask", "React.js", "Flutter", "Python", "Git", "Docker"],
     },
     {
       iconName: "Server",
@@ -63,10 +57,16 @@ export const homepageData: HomepageData = {
       items: ["MySQL", "MongoDB", "Docker", "Kubernetes"],
     },
     {
-      iconName: "Wrench",
-      id: "Tools Lainnya",
-      en: "Other Tools",
-      items: ["Git", "n8n (AI Agent Automation)", "Google Colab", "Kaggle"],
+      iconName: "Database",
+      id: "Data Engineering & ML",
+      en: "Data Engineering & ML",
+      items: ["Data Engineering", "Machine Learning", "Big Data", "Apache Spark", "Apache Kafka", "ETL Pipeline", "Web Scraping"],
+    },
+    {
+      iconName: "Palette",
+      id: "Creative & Design Tools",
+      en: "Creative & Design Tools",
+      items: ["Canva", "Capcut", "Adobe Photoshop", "Adobe Premiere Pro", "Figma"],
     },
   ],
 };

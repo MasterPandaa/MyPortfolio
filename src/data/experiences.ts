@@ -26,14 +26,18 @@ export const experiences: Experience[] = [
     workType: { id: "Remote", en: "Remote" },
     tasks: [
       {
-        id: "Membangun website profil sekolah berbasis Laravel dengan CMS mandiri.",
-        en: "Built a Laravel-based school profile website with a self-managed CMS.",
+        id: "Membangun website profil sekolah berbasis Laravel dengan CMS mandiri 15+ modul administrasi, diuji ulang dengan pendekatan Extreme Programming pada setiap modul.",
+        en: "Built a Laravel-based school profile website with a self-managed CMS covering 15+ administration modules, retested using an Extreme Programming approach for each module.",
       },
     ],
     learnings: [
       {
         id: "Merancang CMS yang ramah bagi pengguna nonteknis (user-friendly admin panel).",
         en: "Designing a CMS friendly for non-technical users (user-friendly admin panel).",
+      },
+      {
+        id: "Pengujian bertahap antar-modul untuk memastikan tidak ada fungsi yang tumpang tindih.",
+        en: "Incremental testing across modules to ensure no overlapping functions.",
       },
     ],
     impact: [
@@ -46,7 +50,7 @@ export const experiences: Experience[] = [
   {
     id: 3,
     role: { id: "Freelance Full-Stack Developer", en: "Freelance Full-Stack Developer" },
-    company: "PT Sarana Insan Muda Selaras",
+    company: "Life Media (PT Sarana Insan Muda Selaras)",
     period: { id: "Mei 2025 – Juni 2025", en: "May 2025 – June 2025" },
     duration: { id: "2 bulan", en: "2 months" },
     status: { id: "Freelance", en: "Freelance" },
@@ -60,6 +64,10 @@ export const experiences: Experience[] = [
       {
         id: "Membangun fitur pendaftaran online, CMS terpusat, dan pelaporan otomatis.",
         en: "Built online registration features, a centralized CMS, and automated reporting.",
+      },
+      {
+        id: "Melakukan pengujian menyeluruh dengan pendekatan Extreme Programming pada setiap perubahan fitur sebelum rilis ke klien.",
+        en: "Conducted thorough testing using an Extreme Programming approach for every feature change before client release.",
       },
     ],
     learnings: [
@@ -101,8 +109,8 @@ export const experiences: Experience[] = [
         en: "Built the \"ASSRI\" medical teleconsultation system on Laravel for remote clinical practice simulations for medical students.",
       },
       {
-        id: "Mengintegrasikan AI agent (n8n) sebagai chatbot kesehatan untuk mengotomatisasi screening keluhan pasien dan alur penjadwalan.",
-        en: "Integrated an AI agent (n8n) as a health chatbot to automate patient complaint screening and scheduling flows.",
+        id: "Mengintegrasikan AI Agent (n8n) dengan LLM (Gemini, OpenAI, Llama) berbasis constraint-based prompting untuk otomatisasi prekonsultasi, screening keluhan pasien, dan penjadwalan konsultasi.",
+        en: "Integrated an AI Agent (n8n) with LLM (Gemini, OpenAI, Llama) using constraint-based prompting to automate pre-consultation, patient complaint screening, and consultation scheduling.",
       },
     ],
     learnings: [
@@ -113,6 +121,10 @@ export const experiences: Experience[] = [
       {
         id: "Perancangan flow chatbot untuk kebutuhan domain kesehatan (screening & scheduling).",
         en: "Designing chatbot flows for healthcare domains (screening & scheduling).",
+      },
+      {
+        id: "Penerapan constraint-based prompting untuk membatasi respons LLM sesuai domain kesehatan.",
+        en: "Applying constraint-based prompting to restrict LLM responses within the healthcare domain.",
       },
     ],
     impact: [
@@ -148,6 +160,10 @@ export const experiences: Experience[] = [
         id: "Merilis aplikasi mobile \"SatuAMC\" (Flutter) untuk mendukung digitalisasi sistem operasional RS.",
         en: "Released the \"SatuAMC\" mobile app (Flutter) to support hospital operations digitization.",
       },
+      {
+        id: "Melakukan black-box testing dan regression testing berkelanjutan dengan metodologi Extreme Programming (XP) di setiap iterasi fitur.",
+        en: "Performed black-box testing and continuous regression testing using Extreme Programming (XP) methodology at every feature iteration.",
+      },
     ],
     learnings: [
       {
@@ -157,6 +173,10 @@ export const experiences: Experience[] = [
       {
         id: "Pengembangan aplikasi mobile cross-platform dengan Flutter untuk kebutuhan enterprise/institusi.",
         en: "Building cross-platform mobile apps with Flutter for enterprise / institutional needs.",
+      },
+      {
+        id: "Penerapan black-box dan regression testing dalam siklus Extreme Programming untuk mencegah fungsi tumpang tindih antar-fitur.",
+        en: "Applying black-box and regression testing within an Extreme Programming cycle to prevent overlapping functions between features.",
       },
     ],
     impact: [

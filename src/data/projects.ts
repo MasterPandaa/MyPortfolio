@@ -260,7 +260,7 @@ export const projects: Project[] = [
     category: "web",
     subcategories: ["Business", "Education", "SaaS"],
     type: "freelance",
-    partner: "PT Sarana Insan Muda Selaras",
+    partner: "Life Media (PT Sarana Insan Muda Selaras)",
     role: { id: "Freelance Full-Stack Developer", en: "Freelance Full-Stack Developer" },
     period: "Mei 2025 – Juni 2025",
     status: { id: "Online", en: "Online" },

@@ -6,20 +6,20 @@ import { homepageData } from "@/data/homepage";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Muhammad Luthfi Abdillah — Data Engineer & Full-Stack Developer" },
+      { title: "Muhammad Luthfi Abdillah — AI Agent, QA & Full-Stack Developer" },
       {
         name: "description",
         content:
-          "Portfolio Muhammad Luthfi Abdillah — Data Engineer, Data Scientist, dan Full-Stack Developer. Pipeline ETL, Machine Learning, dan aplikasi web/mobile skala produksi.",
+          "Portfolio Muhammad Luthfi Abdillah — Kecerdasan Buatan (LLM & AI Agent), Software Quality Assurance, dan Full-Stack Web Development.",
       },
       {
         property: "og:title",
-        content: "Muhammad Luthfi Abdillah — Data Engineer & Full-Stack Developer",
+        content: "Muhammad Luthfi Abdillah — AI Agent, QA & Full-Stack Developer",
       },
       {
         property: "og:description",
         content:
-          "Portfolio Muhammad Luthfi Abdillah — Data Engineer, Data Scientist, dan Full-Stack Developer.",
+          "Portfolio Muhammad Luthfi Abdillah — AI Agent (LLM & n8n), Quality Assurance, dan Full-Stack Developer.",
       },
     ],
   }),
@@ -35,6 +35,9 @@ const iconMap: Record<string, any> = {
   Server: Icons.Server,
   Wrench: Icons.Wrench,
   Sparkles: Icons.Sparkles,
+  Bot: Icons.Bot,
+  ShieldCheck: Icons.ShieldCheck,
+  Palette: Icons.Palette,
 };
 
 function Index() {
@@ -104,7 +107,7 @@ function Index() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.skillGroups.map((group) => {
-            const Icon = iconMap[group.iconName] || Icons.Wrench;
+            const Icon = (Icons as any)[group.iconName] || iconMap[group.iconName] || Icons.Wrench;
             return (
               <div
                 key={group.id}
