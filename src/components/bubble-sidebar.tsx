@@ -64,7 +64,7 @@ function Bubble({
     "text-foreground/90 transition-all duration-300 ease-out",
     "hover:scale-110 hover:border-accent hover:text-accent hover:bg-white/40 dark:hover:bg-white/15 hover:shadow-lg",
     active &&
-      "bg-accent text-accent-foreground border-accent shadow-lg shadow-accent/30 ring-2 ring-accent/40 ring-offset-2 ring-offset-background",
+      "bg-accent/20 dark:bg-accent/25 text-accent border-accent shadow-lg shadow-accent/30 ring-2 ring-accent/40 ring-offset-2 ring-offset-background",
     dims,
   );
 
@@ -172,8 +172,8 @@ export function BubbleSidebar() {
         aria-label={tr("Profil", "Profile", language)}
         className={cn(
           "group/profile relative flex h-16 w-16 items-center justify-center rounded-full",
-          "border-2 border-accent bg-gradient-to-br from-navy to-navy-deep text-primary-foreground",
-          "shadow-lg transition-all duration-300 ease-out hover:scale-105",
+          "border-2 border-accent dark:border-accent/35 bg-gradient-to-br from-navy to-navy-deep text-primary-foreground",
+          "shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:border-accent",
           "hover:shadow-[0_0_20px_color-mix(in_oklab,var(--accent)_40%,transparent)]",
         )}
       >

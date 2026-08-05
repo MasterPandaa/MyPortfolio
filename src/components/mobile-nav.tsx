@@ -148,7 +148,7 @@ export function MobileNav() {
                   className={cn(
                     "flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-all duration-300 active:scale-95",
                     isActive
-                      ? "bg-accent text-accent-foreground ring-4 ring-accent/30 shadow-accent/40 scale-110 border border-accent"
+                      ? "bg-accent/20 dark:bg-accent/25 text-accent ring-4 ring-accent/30 shadow-accent/40 scale-110 border border-accent"
                       : "border border-white/40 dark:border-white/15 bg-white/25 dark:bg-black/35 text-foreground/90 backdrop-blur-xl backdrop-saturate-150 hover:bg-white/40 dark:hover:bg-white/15 hover:text-accent hover:border-accent/60",
                   )}
                 >
@@ -222,21 +222,18 @@ export function MobileNav() {
             className={cn(
               "relative z-50 flex items-center justify-center gap-3 rounded-full border border-white/35 dark:border-white/15 bg-white/25 dark:bg-black/35 px-7 py-3.5 shadow-2xl backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 active:scale-95",
               isOpen
-                ? "bg-accent text-accent-foreground border-accent ring-4 ring-accent/30 shadow-accent/30"
+                ? "bg-accent/20 dark:bg-accent/25 text-accent border-accent ring-4 ring-accent/30 shadow-accent/30"
                 : "text-foreground hover:border-accent/60 hover:bg-white/35 dark:hover:bg-black/45",
             )}
           >
             <ActiveIcon
-              className={cn(
-                "h-5 w-5 transition-colors duration-200",
-                isOpen ? "text-accent-foreground" : "text-accent",
-              )}
+              className="h-5 w-5 text-accent transition-colors duration-200"
             />
             <span className="text-sm font-bold tracking-wide">{activeLabel}</span>
             <ChevronUp
               className={cn(
                 "h-5 w-5 transition-transform duration-300",
-                isOpen ? "rotate-180 text-accent-foreground" : "text-muted-foreground",
+                isOpen ? "rotate-180 text-accent" : "text-muted-foreground",
               )}
             />
           </button>
