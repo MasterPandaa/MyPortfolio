@@ -1,13 +1,12 @@
+import { MapPin } from "lucide-react";
 import {
-  MessageCircle,
-  Mail,
-  Github,
-  Linkedin,
-  Instagram,
-  BarChart3,
-  MapPin,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  WhatsappIcon,
+  GmailIcon,
+  GithubIcon,
+  LinkedinIcon,
+  KaggleIcon,
+  InstagramIcon,
+} from "@/components/icons/social-icons";
 
 export type ContactId =
   | "whatsapp"
@@ -23,7 +22,7 @@ export interface ContactItem {
   label: string;
   handle: string;
   href: string;
-  icon: LucideIcon;
+  icon: React.ComponentType<any>;
   gradient: string;
   copyable?: boolean;
   copyValue?: string;
@@ -37,8 +36,8 @@ export const contactItems: ContactItem[] = [
     label: "WhatsApp",
     handle: "+62 895-6403-11157",
     href: "https://wa.me/62895640311157",
-    icon: MessageCircle,
-    gradient: "from-emerald-500 to-teal-600",
+    icon: WhatsappIcon,
+    gradient: "from-emerald-700/85 via-teal-700/85 to-emerald-800/85",
     copyable: true,
     copyValue: "+62895640311157",
     external: true,
@@ -49,8 +48,8 @@ export const contactItems: ContactItem[] = [
     label: "Email",
     handle: "luthfiabd.14@gmail.com",
     href: "mailto:luthfiabd.14@gmail.com",
-    icon: Mail,
-    gradient: "from-navy to-navy-deep",
+    icon: GmailIcon,
+    gradient: "from-rose-700/85 via-red-700/85 to-rose-800/85",
     copyable: true,
     copyValue: "luthfiabd.14@gmail.com",
     primary: true,
@@ -60,8 +59,8 @@ export const contactItems: ContactItem[] = [
     label: "GitHub",
     handle: "MasterPandaa",
     href: "https://github.com/MasterPandaa",
-    icon: Github,
-    gradient: "from-zinc-700 to-zinc-900",
+    icon: GithubIcon,
+    gradient: "from-slate-800/90 via-zinc-800/90 to-zinc-900/90",
     external: true,
   },
   {
@@ -69,8 +68,8 @@ export const contactItems: ContactItem[] = [
     label: "LinkedIn",
     handle: "luthfiabdl",
     href: "https://www.linkedin.com/in/luthfiabdl/",
-    icon: Linkedin,
-    gradient: "from-sky-600 to-blue-700",
+    icon: LinkedinIcon,
+    gradient: "from-sky-700/85 via-blue-700/85 to-indigo-800/85",
     external: true,
   },
   {
@@ -78,8 +77,8 @@ export const contactItems: ContactItem[] = [
     label: "Kaggle",
     handle: "pandaa12",
     href: "https://www.kaggle.com/pandaa12",
-    icon: BarChart3,
-    gradient: "from-cyan-500 to-teal-600",
+    icon: KaggleIcon,
+    gradient: "from-teal-700/85 via-cyan-700/85 to-teal-800/85",
     external: true,
   },
   {
@@ -87,8 +86,8 @@ export const contactItems: ContactItem[] = [
     label: "Instagram",
     handle: "@luthfiabdl_",
     href: "https://instagram.com/luthfiabdl_",
-    icon: Instagram,
-    gradient: "from-pink-500 via-rose-500 to-amber-500",
+    icon: InstagramIcon,
+    gradient: "from-purple-700/85 via-pink-700/85 to-rose-800/85",
     external: true,
   },
 ];
@@ -100,5 +99,5 @@ export const locationContact = {
   value: "Sleman, Yogyakarta",
   countryId: "Indonesia",
   countryEn: "Indonesia",
-  gradient: "from-amber-500 to-orange-600",
+  gradient: "from-amber-700/85 via-orange-700/85 to-amber-800/85",
 };

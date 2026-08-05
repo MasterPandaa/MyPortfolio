@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { Send, Loader2 } from "lucide-react";
+import { Send, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,15 +13,17 @@ const RECIPIENT = "luthfiabd.14@gmail.com";
 
 const schema = z.object({
   name: z.string().trim().min(2).max(100),
+  email: z.string().trim().email(),
   subject: z.string().trim().min(3).max(150),
   message: z.string().trim().min(10).max(2000),
 });
 
-type FieldErrors = Partial<Record<"name" | "subject" | "message", string>>;
+type FieldErrors = Partial<Record<"name" | "email" | "subject" | "message", string>>;
 
 export function ContactForm() {
   const { language } = useLanguage();
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -31,7 +33,7 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const parsed = schema.safeParse({ name, subject, message });
+    const parsed = schema.safeParse({ name, email, subject, message });
     if (!parsed.success) {
       const fe: FieldErrors = {};
       for (const issue of parsed.error.issues) {
@@ -40,39 +42,78 @@ export function ContactForm() {
           fe[key] =
             key === "name"
               ? L("Nama minimal 2 karakter", "Name must be at least 2 characters")
-              : key === "subject"
-                ? L("Subjek minimal 3 karakter", "Subject must be at least 3 characters")
-                : L("Pesan minimal 10 karakter", "Message must be at least 10 characters");
+              : key === "email"
+                ? L("Format email tidak valid", "Invalid email address")
+                : key === "subject"
+                  ? L("Subjek minimal 3 karakter", "Subject must be at least 3 characters")
+                  : L("Pesan minimal 10 karakter", "Message must be at least 10 characters");
         }
       }
       setErrors(fe);
-      toast.error(L("Periksa kembali isian Anda", "Please review the form"));
+      toast.error(L("Periksa kembali isian Anda", "Please review the form fields"));
       return;
     }
+
     setErrors({});
     setSending(true);
 
     try {
-      const mailtoSubject = encodeURIComponent(parsed.data.subject);
-      const mailtoBody = encodeURIComponent(
-        `Nama: ${parsed.data.name}\n\n${parsed.data.message}`
-      );
-      window.open(`mailto:${RECIPIENT}?subject=${mailtoSubject}&body=${mailtoBody}`, "_blank");
-
-      toast.success(
-        L("Pesan siap dikirim!", "Message ready to send!"),
-        {
-          description: L(
-            "Aplikasi email Anda akan terbuka. Klik kirim untuk menyelesaikannya.",
-            "Your email app will open. Click send to complete it.",
-          ),
+      const response = await fetch(`https://formsubmit.co/ajax/${RECIPIENT}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-      );
-      setName("");
-      setSubject("");
-      setMessage("");
+        body: JSON.stringify({
+          name: parsed.data.name,
+          email: parsed.data.email,
+          _subject: `[PENTING] ${parsed.data.subject}`,
+          _priority: "high",
+          _template: "table",
+          _captcha: "false",
+          message: parsed.data.message,
+        }),
+      });
+
+      const resData = await response.json().catch(() => ({}));
+
+      if (response.ok && (resData.success === "true" || resData.success === true || response.status === 200)) {
+        toast.success(L("Pesan Berhasil Dikirim!", "Message Sent Successfully!"), {
+          description: L(
+            "Pesan telah terkirim langsung ke email luthfiabd.14@gmail.com dengan kategori PENTING.",
+            "Message sent directly to luthfiabd.14@gmail.com marked as IMPORTANT.",
+          ),
+          icon: <CheckCircle2 className="h-5 w-5 text-emerald-500" />,
+        });
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      } else {
+        throw new Error(resData.message || L("Gagal mengirim pesan via server", "Failed to send message via server"));
+      }
     } catch (err: any) {
-      toast.error(err.message || L("Gagal membuka aplikasi email", "Failed to open email app"));
+      // Fallback: Open mailto client if fetch encounters network error or blocker
+      try {
+        const mailtoSubject = encodeURIComponent(`[PENTING] ${parsed.data.subject}`);
+        const mailtoBody = encodeURIComponent(
+          `Nama: ${parsed.data.name}\nEmail: ${parsed.data.email}\n\n${parsed.data.message}`
+        );
+        window.open(`mailto:${RECIPIENT}?subject=${mailtoSubject}&body=${mailtoBody}`, "_blank");
+
+        toast.info(L("Membuka aplikasi email...", "Opening email app..."), {
+          description: L(
+            "Pesan Anda telah disiapkan dengan kategori [PENTING]. Tekan kirim di aplikasi email Anda.",
+            "Your message is ready with [PENTING] category. Click send in your email client.",
+          ),
+        });
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      } catch {
+        toast.error(err.message || L("Gagal mengirim pesan", "Failed to send message"));
+      }
     } finally {
       setSending(false);
     }
@@ -98,18 +139,35 @@ export function ContactForm() {
         </p>
 
         <div className="mt-6 grid gap-5">
-          <div className="grid gap-2">
-            <Label htmlFor="cf-name">{L("Nama", "Name")}</Label>
-            <Input
-              id="cf-name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={L("Nama lengkap Anda", "Your full name")}
-              maxLength={100}
-              className={cn(errors.name && "border-destructive focus-visible:ring-destructive/30")}
-              autoComplete="name"
-            />
-            {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-2">
+              <Label htmlFor="cf-name">{L("Nama", "Name")}</Label>
+              <Input
+                id="cf-name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={L("Nama lengkap Anda", "Your full name")}
+                maxLength={100}
+                className={cn(errors.name && "border-destructive focus-visible:ring-destructive/30")}
+                autoComplete="name"
+              />
+              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="cf-email">{L("Email Anda", "Your Email")}</Label>
+              <Input
+                id="cf-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={L("nama@email.com", "name@email.com")}
+                maxLength={100}
+                className={cn(errors.email && "border-destructive focus-visible:ring-destructive/30")}
+                autoComplete="email"
+              />
+              {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+            </div>
           </div>
 
           <div className="grid gap-2">
@@ -177,3 +235,4 @@ export function ContactForm() {
     </form>
   );
 }
+

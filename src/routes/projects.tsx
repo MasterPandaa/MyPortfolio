@@ -92,7 +92,7 @@ function ProjectsPage() {
       uiux: projects.filter((p) => p.category === "uiux").length,
       app: projects.filter((p) => p.category === "app").length,
     }),
-    [],
+    [projects],
   );
 
   const filtered = useMemo(() => {

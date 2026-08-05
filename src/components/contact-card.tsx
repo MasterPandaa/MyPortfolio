@@ -14,9 +14,11 @@ export function ContactCard({ item }: Props) {
   const [copied, setCopied] = useState(false);
   const Icon = item.icon;
 
-  const handleCopy = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleCopy = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     const value = item.copyValue ?? item.handle;
     try {
       await navigator.clipboard.writeText(value);
@@ -30,18 +32,17 @@ export function ContactCard({ item }: Props) {
     }
   };
 
+  const isCopyOnly = item.copyable && !item.external;
+
   // Horizontal layout for primary items (WhatsApp, Email)
   if (item.primary) {
-    return (
-      <a
-        href={item.href}
-        target={item.external ? "_blank" : undefined}
-        rel={item.external ? "noopener noreferrer" : undefined}
-        className={cn(
-          "group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-border/60 bg-card p-4 md:p-6 shadow-sm",
-          "transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:shadow-md",
-        )}
-      >
+    const cardClasses = cn(
+      "group relative flex w-full items-center gap-4 overflow-hidden rounded-2xl border border-border/60 bg-card p-4 md:p-6 shadow-sm text-left cursor-pointer",
+      "transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:shadow-md",
+    );
+
+    const cardContent = (
+      <>
         <div
           className={cn(
             "absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-15 blur-2xl bg-gradient-to-br",
@@ -50,7 +51,7 @@ export function ContactCard({ item }: Props) {
         />
         <div
           className={cn(
-            "flex shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm",
+            "flex shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm border border-white/20 dark:border-white/10",
             item.gradient,
             "h-14 w-14",
           )}
@@ -73,9 +74,12 @@ export function ContactCard({ item }: Props) {
               type="button"
               onClick={handleCopy}
               aria-label={tr("Salin", "Copy", language)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-muted-foreground transition hover:border-accent hover:text-accent"
+              className={cn(
+                "flex h-9 w-9 items-center justify-center rounded-full border border-border/60 bg-background/60 text-muted-foreground transition hover:border-accent hover:text-accent",
+                copied && "border-emerald-500 text-emerald-500",
+              )}
             >
-              {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+              {copied ? <Check className="h-4 w-4 text-emerald-500" /> : <Copy className="h-4 w-4" />}
             </button>
           )}
           {item.external && (
@@ -84,6 +88,25 @@ export function ContactCard({ item }: Props) {
             </div>
           )}
         </div>
+      </>
+    );
+
+    if (isCopyOnly) {
+      return (
+        <button type="button" onClick={handleCopy} className={cardClasses}>
+          {cardContent}
+        </button>
+      );
+    }
+
+    return (
+      <a
+        href={item.href}
+        target={item.external ? "_blank" : undefined}
+        rel={item.external ? "noopener noreferrer" : undefined}
+        className={cardClasses}
+      >
+        {cardContent}
       </a>
     );
   }
@@ -114,7 +137,7 @@ export function ContactCard({ item }: Props) {
 
       <div
         className={cn(
-          "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm mb-3",
+          "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm border border-white/20 dark:border-white/10 mb-3",
           item.gradient,
         )}
       >

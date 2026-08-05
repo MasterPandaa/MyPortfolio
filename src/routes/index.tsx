@@ -53,8 +53,7 @@ function Index() {
 
         <div className="relative">
           {/* Status badge */}
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/70 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground md:gap-2 md:px-3 md:py-1 md:text-xs">
-            <Icons.Sparkles className="h-3 w-3 text-accent md:h-3.5 md:w-3.5" />
+          <div className="inline-flex items-center rounded-full border border-border bg-background/70 px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground md:px-3 md:py-1 md:text-xs">
             {tr(data.available.id, data.available.en, language)}
           </div>
 

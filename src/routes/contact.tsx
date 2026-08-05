@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageSquare, Sparkles } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { useLanguage, t as tr } from "@/contexts/language-context";
 import { contactItems, locationContact } from "@/data/contacts";
 import { ContactCard } from "@/components/contact-card";
@@ -42,15 +42,14 @@ function ContactPage() {
 
       <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
         {/* Hero */}
-        <header className="mb-12 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5" />
+        <header className="mb-8 text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-accent">
             {L("Kontak", "Contact")}
-          </span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+          </p>
+          <h1 className="mt-3 font-display text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             {L("Mari Terhubung", "Let's Connect")}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base md:text-lg text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground">
             {L(
               "Terbuka untuk kolaborasi riset, proyek pengembangan, atau sekadar diskusi teknis. Kirim pesan lewat form atau pilih kanal favorit Anda.",
               "Open to research collaborations, dev projects, or technical chats. Send a message via the form or pick your preferred channel.",
@@ -104,7 +103,7 @@ function ContactPage() {
                 />
                 <div
                   className={cn(
-                    "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm",
+                    "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm border border-white/20 dark:border-white/10",
                     locationContact.gradient,
                   )}
                 >
