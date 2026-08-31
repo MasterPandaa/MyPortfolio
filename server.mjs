@@ -58,42 +58,60 @@ async function tryServeStatic(pathname, res) {
 }
 
 const server = createServer(async (req, res) => {
-  const url = new URL(req.url, `http://localhost`);
-  const pathname = url.pathname;
+  try {
+    const url = new URL(req.url, `http://localhost:${port}`);
+    const pathname = url.pathname;
 
-  // Try to serve static files first (from dist/client and public/)
-  const served = await tryServeStatic(pathname, res);
-  if (served) return;
+    // Healthcheck endpoint for Railway / load balancers
+    if (pathname === "/health" || pathname === "/healthz") {
+      res.writeHead(200, { "Content-Type": "text/plain" });
+      res.end("OK");
+      return;
+    }
 
-  // Forward to TanStack Start SSR handler
-  const headers = {};
-  for (const [k, v] of Object.entries(req.headers)) {
-    if (v !== undefined) headers[k] = Array.isArray(v) ? v.join(", ") : v;
+    // Try to serve static files first (from dist/client and public/)
+    const served = await tryServeStatic(pathname, res);
+    if (served) return;
+
+    // Construct full request URL and forward headers to TanStack Start SSR handler
+    const hostHeader = req.headers["x-forwarded-host"] || req.headers["host"] || `localhost:${port}`;
+    const protoHeader = req.headers["x-forwarded-proto"] || "http";
+    const fullUrl = `${protoHeader}://${hostHeader}${req.url}`;
+
+    const headers = new Headers();
+    for (const [k, v] of Object.entries(req.headers)) {
+      if (v !== undefined && !["content-length", "connection", "keep-alive", "transfer-encoding"].includes(k.toLowerCase())) {
+        if (Array.isArray(v)) {
+          v.forEach((val) => headers.append(k, val));
+        } else {
+          headers.set(k, v);
+        }
+      }
+    }
+
+    const request = new Request(fullUrl, {
+      method: req.method,
+      headers,
+      body: ["GET", "HEAD"].includes(req.method) ? undefined : req,
+      duplex: ["GET", "HEAD"].includes(req.method) ? undefined : "half",
+    });
+
+    const response = await handler.fetch(request);
+
+    res.writeHead(response.status, Object.fromEntries(response.headers));
+    const resBody = await response.arrayBuffer();
+    res.end(Buffer.from(resBody));
+  } catch (err) {
+    console.error("SSR Request Error:", err);
+    if (!res.headersSent) {
+      res.writeHead(500, { "Content-Type": "text/plain" });
+      res.end("Internal Server Error");
+    }
   }
-
-  const body =
-    ["GET", "HEAD"].includes(req.method)
-      ? undefined
-      : await new Promise((resolve) => {
-          const chunks = [];
-          req.on("data", (chunk) => chunks.push(chunk));
-          req.on("end", () => resolve(Buffer.concat(chunks)));
-        });
-
-  const request = new Request(`http://localhost${req.url}`, {
-    method: req.method,
-    headers,
-    body,
-  });
-
-  const response = await handler.fetch(request);
-
-  res.writeHead(response.status, Object.fromEntries(response.headers));
-  const resBody = await response.arrayBuffer();
-  res.end(Buffer.from(resBody));
 });
 
-server.listen(port, "0.0.0.0", () => {
-  console.log(`Server running at http://0.0.0.0:${port}`);
+const host = process.env.HOST || "0.0.0.0";
+server.listen(port, host, () => {
+  console.log(`Server running at http://${host}:${port}`);
   console.log(`Serving static from: ${STATIC_DIRS.join(", ")}`);
 });
