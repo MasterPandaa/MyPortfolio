@@ -110,8 +110,8 @@ const server = createServer(async (req, res) => {
   }
 });
 
-const host = process.env.HOST || "0.0.0.0";
+const host = process.env.HOST || "::";
 server.listen(port, host, () => {
-  console.log(`Server running at http://${host}:${port}`);
+  console.log(`Server running at http://${host}:${port} (dual-stack IPv4/IPv6)`);
   console.log(`Serving static from: ${STATIC_DIRS.join(", ")}`);
 });
