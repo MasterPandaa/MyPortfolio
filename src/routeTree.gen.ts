@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as _rootSpaRouteImport } from './routes/__root.spa'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as ActivitiesRouteImport } from './routes/activities'
@@ -18,11 +17,6 @@ import { Route as CareerRouteImport } from './routes/career'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ProjectsRouteImport } from './routes/projects'
 
-const _rootSpaRoute = _rootSpaRouteImport.update({
-  id: '/__root/spa',
-  path: '/spa',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -67,7 +61,6 @@ export interface FileRoutesByFullPath {
   '/career': typeof CareerRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
-  '/spa': typeof _rootSpaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +70,6 @@ export interface FileRoutesByTo {
   '/career': typeof CareerRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
-  '/spa': typeof _rootSpaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +80,6 @@ export interface FileRoutesById {
   '/career': typeof CareerRoute
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
-  '/__root/spa': typeof _rootSpaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +91,6 @@ export interface FileRouteTypes {
     | '/career'
     | '/contact'
     | '/projects'
-    | '/spa'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +100,6 @@ export interface FileRouteTypes {
     | '/career'
     | '/contact'
     | '/projects'
-    | '/spa'
   id:
     | '__root__'
     | '/'
@@ -120,7 +109,6 @@ export interface FileRouteTypes {
     | '/career'
     | '/contact'
     | '/projects'
-    | '/__root/spa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,18 +119,10 @@ export interface RootRouteChildren {
   CareerRoute: typeof CareerRoute
   ContactRoute: typeof ContactRoute
   ProjectsRoute: typeof ProjectsRoute
-  _rootSpaRoute: typeof _rootSpaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/__root/spa': {
-      id: '/__root/spa'
-      path: '/spa'
-      fullPath: '/spa'
-      preLoaderRoute: typeof _rootSpaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -203,7 +183,6 @@ const rootRouteChildren: RootRouteChildren = {
   CareerRoute: CareerRoute,
   ContactRoute: ContactRoute,
   ProjectsRoute: ProjectsRoute,
-  _rootSpaRoute: _rootSpaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
