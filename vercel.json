@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run build:spa",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

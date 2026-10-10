@@ -5,10 +5,12 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
-// Config khusus untuk static SPA build (GitHub Pages)
-// Tidak menggunakan @tanstack/react-start karena tidak perlu server SSR
+// Config khusus untuk static SPA build (GitHub Pages & Vercel)
+// Menggunakan base "/" jika di Vercel atau VITE_BASE_PATH ditentukan
+const basePath = process.env.VITE_BASE_PATH || (process.env.VERCEL ? "/" : "/MyPortfolio/");
+
 export default defineConfig({
-  base: "/MyPortfolio/",
+  base: basePath,
   css: {
     transformer: "lightningcss",
   },
@@ -43,4 +45,3 @@ export default defineConfig({
     react(),
   ],
 });
-
