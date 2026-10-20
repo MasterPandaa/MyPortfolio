@@ -1,65 +1,40 @@
-# Portfolio — Muhammad Luthfi Abdillah
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MasterPandaa/MasterPandaa/main/assets/banners/MyPortfolio.svg" alt="Portfolio Web Application Banner" width="100%">
+</p>
 
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](#)
-[![Stack](https://img.shields.io/badge/Stack-React_19_%7C_TanStack_Start_%7C_Tailwind_v4-blue)](#)
-[![License](https://img.shields.io/badge/License-MIT-orange)](#)
+<p align="center">
+  <img src="https://img.shields.io/badge/Frontend-React_19-61DAFB?style=flat-square&logo=react" alt="React 19">
+  <img src="https://img.shields.io/badge/Router-TanStack_Start-FF4154?style=flat-square" alt="TanStack">
+  <img src="https://img.shields.io/badge/Styling-Tailwind_CSS_v4-38BDF8?style=flat-square&logo=tailwindcss" alt="Tailwind">
+  <img src="https://img.shields.io/badge/Language-TypeScript_5-3178C6?style=flat-square&logo=typescript" alt="TypeScript">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-10B981?style=flat-square" alt="License"></a>
+</p>
 
-Personal portfolio web application showcasing projects across **AI Agents & LLM Automation**, **Data Engineering & Applied ML**, **Software QA**, and **Full-Stack Web Development**.
+## Overview
 
-Built with **React 19**, **TanStack Start**, **TanStack Router**, and **Tailwind CSS v4**, the application emphasizes responsive typography, micro-interactions, dark/light theme switching, and client/SSR flexibility.
+Modern developer portfolios should demonstrate engineering rigor rather than static templates. This web application represents the personal portfolio of **Muhammad Luthfi Abdillah**, engineered with **React 19**, **TanStack Start**, **TypeScript**, and **Tailwind CSS v4**.
 
----
-
-## Key Features
-
-- **Multilingual Support**: Real-time language switching between English and Bahasa Indonesia.
-- **Adaptive Color Themes**: Tailored light and dark palettes with smooth transitions.
-- **Categorized Project Showcase**: Interactive project catalog spanning Web, Mobile, Data Pipelines, and Machine Learning systems with filterable taxonomies.
-- **Research & Publications**: Highlights published scientific papers, SINTA journal metrics, and benchmark findings.
-- **Responsive Layout**: Floating navigation sidebar on desktop with an ergonomic mobile bottom navigation bar.
+The application showcases production full-stack systems, distributed big data pipelines, machine learning models, and automated QA tooling with zero runtime slop and optimized Core Web Vitals.
 
 ---
 
-## Technical Stack
+## Core Capabilities
 
-- **Core**: React 19, TypeScript
-- **Framework & Routing**: TanStack Start, TanStack Router
-- **State & Data Fetching**: TanStack Query
-- **Styling**: Tailwind CSS v4, Lucide Icons
-- **Build Engine**: Vite
+- **Next-Gen React 19 Architecture**: Utilizes React 19 compiler primitives and modern hooks for lean bundle sizes.
+- **Type-Safe Full-Stack Routing**: Powered by TanStack Router and TanStack Start for seamless client-side navigation.
+- **Tailwind CSS v4 Styling**: Adheres to modern design tokens, dark obsidian palettes, and fluid responsive layouts.
+- **Verified Metrics Showcase**: Presents empirical benchmark statistics across Kaggle models, hospital deployments, and Sinta 3 research.
 
 ---
 
-## Getting Started
+## Quickstart
 
-### Prerequisites
-
-- Node.js >= 18.x
-- NPM, PNPM, or Yarn
-
-### Installation & Run
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/MasterPandaa/MyPortfolio.git
-   cd MyPortfolio
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Start local development**:
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:3000` in your browser.
-
-4. **Build for production**:
-   ```bash
-   npm run build
-   ```
+```bash
+git clone https://github.com/MasterPandaa/MyPortfolio.git
+cd MyPortfolio
+npm install
+npm run dev
+```
 
 ---
 
