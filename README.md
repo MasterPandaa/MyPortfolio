@@ -1,82 +1,68 @@
-# 🚀 Portfolio 2026 — Muhammad Luthfi Abdillah
+# Portfolio — Muhammad Luthfi Abdillah
 
-![Portfolio Banner](https://img.shields.io/badge/Status-Active-brightgreen)
-![Tech Stack](https://img.shields.io/badge/Stack-React_19_%7C_TanStack_Start_%7C_Tailwind_v4-blue)
-![License](https://img.shields.io/badge/License-MIT-orange)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen)](#)
+[![Stack](https://img.shields.io/badge/Stack-React_19_%7C_TanStack_Start_%7C_Tailwind_v4-blue)](#)
+[![License](https://img.shields.io/badge/License-MIT-orange)](#)
 
-Selamat datang di repositori resmi **Portfolio 2026 — Muhammad Luthfi Abdillah**. Aplikasi web modern ini dirancang untuk menampilkan portofolio profesional lintas bidang **AI Agent & LLM**, **Data Engineering & Data Science**, **Software Quality Assurance**, dan **Full-Stack Web Development**.
+Personal portfolio web application showcasing projects across **AI Agents & LLM Automation**, **Data Engineering & Applied ML**, **Software QA**, and **Full-Stack Web Development**.
 
----
-
-## 🌟 Tentang Portofolio
-
-Aplikasi ini dibangun dengan fokus pada performa tinggi, visual interaktif berestetika tinggi (*dark/light theme*, *glassmorphism*, *micro-animations*), serta arsitektur yang fleksibel untuk *Server-Side Rendering (SSR)* dan *Static Single Page Application (SPA)*.
-
-### 📌 Ringkasan Profil
-- 👤 **Nama**: Muhammad Luthfi Abdillah
-- 🎓 **Fokus**: AI Agent (LLM & n8n Automation), Software Quality Assurance (QA), Data Engineering & Science, dan Full-Stack Web Development.
-- 🎯 **Tujuan**: Menghadirkan solusi teknologi cerdas, sistem otomatisasi berbasis AI, data pipeline yang andal, serta aplikasi web & mobile berstandar produksi.
+Built with **React 19**, **TanStack Start**, **TanStack Router**, and **Tailwind CSS v4**, the application emphasizes responsive typography, micro-interactions, dark/light theme switching, and client/SSR flexibility.
 
 ---
 
-## ✨ Fitur Utama
+## Key Features
 
-- 🌐 **Dual Language Support**: Pengalihan bahasa secara *real-time* (Bahasa Indonesia & English).
-- 🌓 **Theme Switcher**: Fitur mode Gelap (Dark) dan Terang (Light) yang presisi.
-- 📊 **Showcase Proyek Lengkap**: Portofolio proyek Web, Mobile, UI/UX, dan AI/Data lengkap dengan modal detail interaktif, statistik, dan pengelompokan kategori.
-- 🤖 **Aktivitas & Riset AI/Data**: Visualisasi pencapaian model machine learning, artikel ilmiah/jurnal, dan otomasi AI Agent.
-- 📱 **Desain ResponsiF & Ergonomis**: Navigasi sidebar mengambang (*bubble sidebar*) di desktop dan *bottom navigation* di perangkat seluler.
-- 📬 **Formulir Kontak Interaktif**: Integrasi pengiriman pesan langsung dan tautan sosial media resmi.
-
----
-
-## 🛠️ Tech Stack & Alat
-
-- **Core**: [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
-- **Routing & Framework**: [TanStack Router](https://tanstack.com/router) & [TanStack Start](https://tanstack.com/start)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/), Lucide Icons
-- **State Management & Query**: [TanStack Query](https://tanstack.com/query)
-- **Build Tooling**: [Vite 8](https://vitejs.dev/)
+- **Multilingual Support**: Real-time language switching between English and Bahasa Indonesia.
+- **Adaptive Color Themes**: Tailored light and dark palettes with smooth transitions.
+- **Categorized Project Showcase**: Interactive project catalog spanning Web, Mobile, Data Pipelines, and Machine Learning systems with filterable taxonomies.
+- **Research & Publications**: Highlights published scientific papers, SINTA journal metrics, and benchmark findings.
+- **Responsive Layout**: Floating navigation sidebar on desktop with an ergonomic mobile bottom navigation bar.
 
 ---
 
-## 🚀 Memulai (Installation & Local Setup)
+## Technical Stack
 
-### Prasyarat
-- Node.js versi 18+ atau lebih baru
-- npm / yarn / pnpm
+- **Core**: React 19, TypeScript
+- **Framework & Routing**: TanStack Start, TanStack Router
+- **State & Data Fetching**: TanStack Query
+- **Styling**: Tailwind CSS v4, Lucide Icons
+- **Build Engine**: Vite
 
-### Langkah Setup
+---
 
-1. **Clone repositori**:
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 18.x
+- NPM, PNPM, or Yarn
+
+### Installation & Run
+
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/MasterPandaa/MyPortfolio.git
    cd MyPortfolio
    ```
 
-2. **Install dependensi**:
+2. **Install dependencies**:
    ```bash
    npm install
    ```
 
-3. **Jalankan Mode Mode Pengembangan (Development)**:
+3. **Start local development**:
    ```bash
    npm run dev
    ```
-   Aplikasi akan berjalan di `http://localhost:8080` (atau port yang dikonfigurasi).
+   Open `http://localhost:3000` in your browser.
 
-4. **Build untuk Produksi (Static SPA / GitHub Pages)**:
+4. **Build for production**:
    ```bash
-   npm run build:spa
-   ```
-
-5. **Preview Build Production**:
-   ```bash
-   npm run preview:spa
+   npm run build
    ```
 
 ---
 
-## 📄 Lisensi
+## License
 
-Hak Cipta © 2026 [Muhammad Luthfi Abdillah](https://github.com/MasterPandaa). Dilisensikan di bawah lisensi MIT.
+This project is licensed under the [MIT License](LICENSE).
