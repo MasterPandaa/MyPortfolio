@@ -21,7 +21,7 @@ The application showcases production full-stack systems, distributed big data pi
 ## Core Capabilities
 
 - **Next-Gen React 19 Architecture**: Utilizes React 19 compiler primitives and modern hooks for lean bundle sizes.
-- **Type-Safe Full-Stack Routing**: Powered by TanStack Router and TanStack Start for seamless client-side navigation.
+- **Type-Safe Full-Stack Routing**: Powered by TanStack Router and TanStack Start for instant client-side navigation.
 - **Tailwind CSS v4 Styling**: Adheres to modern design tokens, dark obsidian palettes, and fluid responsive layouts.
 - **Verified Metrics Showcase**: Presents empirical benchmark statistics across Kaggle models, hospital deployments, and Sinta 3 research.
 
